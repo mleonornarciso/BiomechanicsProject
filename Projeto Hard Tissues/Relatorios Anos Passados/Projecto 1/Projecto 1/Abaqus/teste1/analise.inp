@@ -1,0 +1,183 @@
+*Heading
+** Job name: bt_quad Model name: Model-1
+*Preprint, echo=NO, model=NO, history=NO, contact=NO
+**
+** PARTS
+**
+*Part, name=Part-1
+*End Part
+**  
+*Part, name=Part-2
+*End Part
+**  
+**
+** ASSEMBLY
+**
+*Assembly, name=Assembly
+**  
+*Instance, name=Part-1-1, part=Part-1
+*Node
+      1,          20.,           0.
+      2,          20.,          10.
+      3,          20.,          20.
+      4,          20.,          30.
+      5,          20.,          40.
+      6,          10.,           0.
+      7,          10.,          10.
+      8,          10.,          20.
+      9,          10.,          30.
+     10,          10.,          40.
+     11,           0.,           0.
+     12,           0.,          10.
+     13,           0.,          20.
+     14,           0.,          30.
+     15,           0.,          40.
+     16,         -10.,           0.
+     17,         -10.,          10.
+     18,         -10.,          20.
+     19,         -10.,          30.
+     20,         -10.,          40.
+     21,         -20.,           0.
+     22,         -20.,          10.
+     23,         -20.,          20.
+     24,         -20.,          30.
+     25,         -20.,          40.
+*Element, type=CPS4
+ 1,  1,  2,  7,  6
+ 2,  2,  3,  8,  7
+ 3,  3,  4,  9,  8
+ 4,  4,  5, 10,  9
+ 5,  6,  7, 12, 11
+ 6,  7,  8, 13, 12
+ 7,  8,  9, 14, 13
+ 8,  9, 10, 15, 14
+ 9, 11, 12, 17, 16
+10, 12, 13, 18, 17
+11, 13, 14, 19, 18
+12, 14, 15, 20, 19
+13, 16, 17, 22, 21
+14, 17, 18, 23, 22
+15, 18, 19, 24, 23
+16, 19, 20, 25, 24
+*Nset, nset=_PickedSet3, internal, generate
+  1,  25,   1
+*Elset, elset=_PickedSet3, internal, generate
+  1,  16,   1
+** Section: Section-1
+*Solid Section, elset=_PickedSet3, material=Material-1
+1.,
+*End Instance
+**  
+*Instance, name=Part-2-1, part=Part-2
+*Node
+      1,          10.,          40.
+      2,         -10.,          40.
+      3,          10.,          50.
+      4,         -10.,          50.
+      5,           0.,          40.
+      6,           0.,          50.
+*Element, type=CPS4
+1, 4, 2, 5, 6
+2, 3, 6, 5, 1
+*Nset, nset=_PickedSet2, internal, generate
+ 1,  6,  1
+*Elset, elset=_PickedSet2, internal
+ 1, 2
+** Section: Section-2
+*Solid Section, elset=_PickedSet2, material=Material-2
+1.,
+*End Instance
+**  
+*Nset, nset=_PickedSet9, internal, instance=Part-1-1, generate
+  1,  21,   5
+*Elset, elset=_PickedSet9, internal, instance=Part-1-1, generate
+  1,  13,   4
+*Nset, nset=_PickedSet10, internal, instance=Part-1-1
+ 11,
+*Nset, nset=_PickedSet15, internal, instance=Part-1-1, generate
+  1,  25,   1
+*Elset, elset=_PickedSet15, internal, instance=Part-1-1, generate
+  1,  16,   1
+*Elset, elset=__PickedSurf6_S2, internal, instance=Part-2-1
+ 1,
+*Elset, elset=__PickedSurf6_S3, internal, instance=Part-2-1
+ 2,
+*Surface, type=ELEMENT, name=_PickedSurf6, internal
+__PickedSurf6_S2, S2
+__PickedSurf6_S3, S3
+*Elset, elset=__PickedSurf7_S2, internal, instance=Part-1-1, generate
+  4,  16,   4
+*Surface, type=ELEMENT, name=_PickedSurf7, internal
+__PickedSurf7_S2, S2
+*Elset, elset=__PickedSurf8_S4, internal, instance=Part-2-1
+ 1,
+*Elset, elset=__PickedSurf8_S1, internal, instance=Part-2-1
+ 2,
+*Surface, type=ELEMENT, name=_PickedSurf8, internal
+__PickedSurf8_S4, S4
+__PickedSurf8_S1, S1
+** Constraint: Constraint-1
+*Tie, name=Constraint-1, adjust=yes
+_PickedSurf7, _PickedSurf6
+*Elset, elset=el_interesse, internal, instance=Part-1-1, generate
+  1,  16,   1
+*End Assembly
+** 
+** MATERIALS
+** 
+*Material, name=Material-1
+*Elastic
+ 0.001, 0.3,  0.
+ 2000., 0.3, 0.1
+20000., 0.3,  1.
+*Material, name=Material-2
+*Elastic
+200000., 0.3
+** ----------------------------------------------------------------
+** 
+** STEP: Step-1
+** 
+*Step, name=Step-1
+*Static
+1., 1., 1e-05, 1.
+** 
+** BOUNDARY CONDITIONS
+** 
+** Name: BC-1 Type: Displacement/Rotation
+*Boundary
+_PickedSet9, 2, 2
+** Name: BC-2 Type: Displacement/Rotation
+*Boundary
+_PickedSet10, 1, 1
+_PickedSet10, 2, 2
+** 
+** LOADS
+** 
+** Name: Load-1   Type: Pressure
+*Dsload
+_PickedSurf8, P, 20.
+** 
+** PREDEFINED FIELDS
+** 
+** Name: Predefined Field-1   Type: Temperature
+*Temperature, input=dens.dat
+** 
+** OUTPUT REQUESTS
+** 
+*Restart, write, frequency=0
+** 
+** FIELD OUTPUT: F-Output-1
+** 
+*Output, field, variable=PRESELECT
+*node output
+U, NT
+** 
+** HISTORY OUTPUT: H-Output-1
+** 
+*Output, history, variable=PRESELECT
+**
+*el file, pos=average, freq=99999, elset=el_interesse
+ sinv,
+ ener
+**
+*End Step

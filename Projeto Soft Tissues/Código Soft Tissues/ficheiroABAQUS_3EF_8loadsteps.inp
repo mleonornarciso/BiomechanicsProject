@@ -1,0 +1,56 @@
+*HEADING
+1D-Non-Linear Elastic
+*PREPRINT,ECHO=YES,HISTORY=NO,MODEL=NO
+*NODE , NSET=NOS
+**Numero do No,x1,x2
+ 1,0.,0.
+ 2,0.0035,0.
+ 3,0.0070,0.
+ 4,0.0105,0.
+*ELEMENT,TYPE=T2D2,ELSET=VIGA
+**Numero do Elemento,numero global do no 1 do elemento,numero global do no 2 do elemento
+ 1,1,2
+ 2,2,3
+ 3,3,4
+*SOLID SECTION,MAT=USER,ELSET=VIGA
+**Area da Seccao transversal de referencia
+0.00005
+*MATERIAL,NAME=USER
+*USER MATERIAL,CONSTANTS=2
+**CONSTANTS=Numero de constantes materiais
+**valores das constantes materiais, separados por virgulas (se forem mais do que um)
+23.6720,506410.
+**
+*BOUNDARY
+**Numero do no,todos os deslocamentos impedidos
+1,ENCASTRE
+*STEP,NLGEOM,INC=1000
+**INC=Mumero de incrementos
+**
+*STATIC
+**Incremento de tempo inicial (proposto),incremento total do STEP,incremento minimo,incremento maximo  
+.125,1.,.125,.125
+*CLOAD
+**Cargas concentradas em nos
+**No,Direccao,valor da carga
+4,1,27.85
+**
+*OUTPUT, HISTORY, OP=ADD
+*ELEMENT OUTPUT, ELSET=VIGA
+S11,
+*ELEMENT OUTPUT, ELSET=VIGA
+E11,
+**
+*OUTPUT,HISTORY, OP=ADD
+*NODE OUTPUT, NSET=NOS
+U1,
+*NODE OUTPUT, NSET=NOS
+RF,
+**
+*EL PRINT,SUMMARY=YES
+S
+E
+*NODE PRINT,SUMMARY=YES
+ U
+ RF
+*END STEP

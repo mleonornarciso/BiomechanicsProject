@@ -1,0 +1,2002 @@
+1
+
+   Abaqus 6.9-3                                  Date 28-May-2018   Time 12:12:01
+   For use at INSTITUTO SUPERIOR TECNICO under license from Dassault Systemes or its subsidiary.
+
+
+
+                         The Abaqus Software is a product of:
+
+                           Dassault Systemes Simulia Corp.
+                                 Rising Sun Mills
+                                 166 Valley Street
+                           Providence, RI 02909-2499, USA
+ 
+
+
+                   Available for internal use at INSTITUTO SUPERIOR TECNICO. 
+                   The Abaqus Online Support System is accessible
+                   through the "My Support" section of the SIMULIA
+                   Home Page at http://www.simulia.com.
+
+                   Support policies for academic licenses are described
+                   on the SIMULIA web site at
+                   http://www.simulia.com/academics/academic_support.html.
+ 
+                          On machine abaco 
+                          you are authorized to run
+                          Abaqus/Standard until 31-Mar-2019
+
+                          Your site id is: 200000000000902 
+
+
+ 
+                    For assistance or any other information you may
+                    obtain contact information for your local office
+                    from the world wide web at:
+
+                      http://www.simulia.com/about/locations.html
+
+ 
+                * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+                *                                                         * 
+                *                   *****************                     * 
+                *                   *  N O T I C E  *                     * 
+                *                   *****************                     * 
+                *                                                         * 
+                *                                                         * 
+                *                    Abaqus 6.9-3                         * 
+                *                                                         * 
+                *          BUILD ID: 2009_11_19-10.14.34 92922            * 
+                *                                                         * 
+                *                                                         * 
+                *  Please make sure you are using release 6.9 manuals     * 
+                *  plus the notes accompanying this release.              * 
+                *                                                         * 
+                *                                                         * 
+                *                                                         * 
+                *                                                         * 
+                *                                                         * 
+                *   This program may not be used for commercial purposes  * 
+                *           without payment of a commercial fee.          * 
+                *                                                         * 
+                * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+
+ 
+
+
+
+     PROCESSING PART, INSTANCE, AND ASSEMBLY INFORMATION
+   *******************************************************
+
+
+     END PROCESSING PART, INSTANCE, AND ASSEMBLY INFORMATION
+   ***********************************************************
+
+1
+
+   Abaqus 6.9-3                                  Date 28-May-2018   Time 12:12:01
+   For use at INSTITUTO SUPERIOR TECNICO under license from Dassault Systemes or its subsidiary.
+
+                                                                                     
+
+                                             A B A Q U S   I N P U T   E C H O
+
+
+                        5   10   15   20   25   30   35   40   45   50   55   60   65   70   75   80
+                    --------------------------------------------------------------------------------
+                    *HEADING
+                    1D-Non-Linear Elastic   
+                    *PREPRINT,ECHO=YES,HISTORY=NO,MODEL=NO  
+                    *NODE , NSET=NOS
+     LINE     5     **Numero do No,x1,x2    
+                     1,0.,0.
+                     2,0.0035,0.    
+                     3,0.0070,0.    
+                     4,0.0105,0.    
+     LINE    10     *ELEMENT,TYPE=T2D2,ELSET=VIGA   
+                    **Numero do Elemento,numero global do no 1 do elemento,numero global do no 2 do elemento
+                     1,1,2  
+                     2,2,3  
+                     3,3,4  
+     LINE    15     *SOLID SECTION,MAT=USER,ELSET=VIGA      
+                    **Area da Seccao transversal de referencia      
+                    0.00005 
+                    *MATERIAL,NAME=USER     
+                    *USER MATERIAL,CONSTANTS=2      
+     LINE    20     **CONSTANTS=Numero de constantes materiais      
+                    **valores das constantes materiais, separados por virgulas (se forem mais do que um)    
+                    23.6720,506410. 
+                    **      
+                    *BOUNDARY       
+     LINE    25     **Numero do no,todos os deslocamentos impedidos 
+                    1,ENCASTRE      
+                    *STEP,NLGEOM,INC=1000   
+                    **INC=Mumero de incrementos     
+                    **      
+     LINE    30     *STATIC 
+                    **Incremento de tempo inicial (proposto),incremento total do STEP,incremento minimo,incremento maximo   
+                    .05,1.,.05,.05  
+                    *CLOAD  
+                    **Cargas concentradas em nos    
+     LINE    35     **No,Direccao,valor da carga    
+                    4,1,27.85       
+                    **      
+                    *OUTPUT, HISTORY, OP=ADD
+                    *ELEMENT OUTPUT, ELSET=VIGA     
+     LINE    40     S11,    
+                    *ELEMENT OUTPUT, ELSET=VIGA     
+                    E11,    
+                    **      
+                    *OUTPUT,HISTORY, OP=ADD 
+     LINE    45     *NODE OUTPUT, NSET=NOS  
+                    U1,     
+                    *NODE OUTPUT, NSET=NOS  
+                    RF,     
+                    **      
+     LINE    50     *EL PRINT,SUMMARY=YES   
+                    S       
+                    E       
+                    *NODE PRINT,SUMMARY=YES 
+                     U      
+     LINE    55      RF     
+                    *END STEP       
+                    --------------------------------------------------------------------------------
+                        5   10   15   20   25   30   35   40   45   50   55   60   65   70   75   80
+                    --------------------------------------------------------------------------------
+
+
+
+     OPTIONS BEING PROCESSED
+   ***************************
+
+
+  *HEADING
+          1D-Non-Linear Elastic                                                                                                                                                                                                                                           
+  *NODE , NSET=NOS
+  *ELEMENT,TYPE=T2D2,ELSET=VIGA
+  *MATERIAL,NAME=USER
+  *USER MATERIAL,CONSTANTS=2
+  *SOLID SECTION,MAT=USER,ELSET=VIGA
+  *BOUNDARY
+  *SOLID SECTION,MAT=USER,ELSET=VIGA
+  *OUTPUT, HISTORY, OP=ADD
+  *OUTPUT,HISTORY, OP=ADD
+  *ELEMENT OUTPUT, ELSET=VIGA
+  *ELEMENT OUTPUT, ELSET=VIGA
+  *OUTPUT, HISTORY, OP=ADD
+  *OUTPUT,HISTORY, OP=ADD
+  *ELEMENT OUTPUT, ELSET=VIGA
+  *ELEMENT OUTPUT, ELSET=VIGA
+  *OUTPUT, HISTORY, OP=ADD
+  *OUTPUT,HISTORY, OP=ADD
+  *ELEMENT OUTPUT, ELSET=VIGA
+  *ELEMENT OUTPUT, ELSET=VIGA
+  *STEP,NLGEOM,INC=1000
+  *OUTPUT, HISTORY, OP=ADD
+  *OUTPUT,HISTORY, OP=ADD
+  *STEP,NLGEOM,INC=1000
+  *STEP,NLGEOM,INC=1000
+  *STATIC
+  *OUTPUT, HISTORY, OP=ADD
+  *ELEMENT OUTPUT, ELSET=VIGA
+  *ELEMENT OUTPUT, ELSET=VIGA
+  *OUTPUT,HISTORY, OP=ADD
+  *EL PRINT,SUMMARY=YES
+  *END STEP
+  *BOUNDARY
+  *STEP,NLGEOM,INC=1000
+  *STATIC
+  *CLOAD
+  *OUTPUT, HISTORY, OP=ADD
+  *OUTPUT,HISTORY, OP=ADD
+  *NODE OUTPUT, NSET=NOS
+  *NODE OUTPUT, NSET=NOS
+  *NODE PRINT,SUMMARY=YES
+  *END STEP
+
+ ***WARNING: USER SUBROUTINE UMAT WILL BE USED WITH THE STAVEV ARRAY 
+             DIMENSIONED TO ZERO SINCE THE *DEPVAR OPTION IS NOT USED WITH THIS 
+             MATERIAL. CONSEQUENTLY, DEFINING STATEV ENTRIES IN SUBROUTINE UMAT 
+             WILL CAUSE CODE EXECUTION ERRORS.
+
+
+
+                            P R O B L E M   S I Z E
+
+
+          NUMBER OF ELEMENTS IS                                     3
+          NUMBER OF NODES IS                                        4
+          NUMBER OF NODES DEFINED BY THE USER                       4
+          TOTAL NUMBER OF VARIABLES IN THE MODEL                    8
+          (DEGREES OF FREEDOM PLUS ANY LAGRANGE MULTIPLIER VARIABLES)
+
+
+
+                              END OF USER INPUT PROCESSING
+
+
+
+     JOB TIME SUMMARY
+       USER TIME (SEC)      =  0.11000    
+       SYSTEM TIME (SEC)    =  2.00000E-02
+       TOTAL CPU TIME (SEC) =  0.13000    
+       WALLCLOCK TIME (SEC) =          1
+1
+
+   Abaqus 6.9-3                                  Date 28-May-2018   Time 12:12:03
+   For use at INSTITUTO SUPERIOR TECNICO under license from Dassault Systemes or its subsidiary.
+
+     1D-Non-Linear Elastic                                                                     STEP    1  INCREMENT    1
+                                                                                          TIME COMPLETED IN THIS STEP   0.00    
+
+
+                        S T E P       1     S T A T I C   A N A L Y S I S
+
+
+                                                                                          
+
+     AUTOMATIC TIME CONTROL WITH -
+          A SUGGESTED INITIAL TIME INCREMENT OF                5.000E-02
+          AND A TOTAL TIME PERIOD OF                            1.00    
+          THE MINIMUM TIME INCREMENT ALLOWED IS                5.000E-02
+          THE MAXIMUM TIME INCREMENT ALLOWED IS                5.000E-02
+
+     LINEAR EQUATION SOLVER TYPE         DIRECT SPARSE
+
+          LARGE DISPLACEMENT THEORY WILL BE USED
+  
+                   M E M O R Y   E S T I M A T E
+  
+ PROCESS      FLOATING PT       MINIMUM MEMORY        MEMORY TO
+              OPERATIONS           REQUIRED          MINIMIZE I/O
+             PER ITERATION         (MBYTES)           (MBYTES)
+  
+     1          2.70E+01               17                 24
+  
+ NOTE:
+      (1) SINCE ABAQUS DOES NOT PRE-ALLOCATE MEMORY AND ONLY ALLOCATES MEMORY AS NEEDED DURING THE ANALYSIS,
+          THE MEMORY REQUIREMENT PRINTED HERE CAN ONLY BE VIEWED AS A GENERAL GUIDELINE BASED ON THE BEST
+          KNOWLEDGE AVAILABLE AT THE BEGINNING OF A STEP BEFORE THE SOLUTION PROCESS HAS BEGUN.
+      (2) THE ESTIMATE IS NORMALLY UPDATED AT THE BEGINNING OF EVERY STEP. IT IS THE MAXIMUM VALUE OF THE
+          ESTIMATE FROM THE CURRENT STEP TO THE LAST STEP OF THE ANALYSIS, WITH UNSYMMETRIC SOLUTION TAKEN
+          INTO ACCOUNT IF APPLICABLE. 
+      (3) SINCE THE ESTIMATE IS BASED ON THE ACTIVE DEGREES OF FREEDOM IN THE FIRST ITERATION OF THE 
+          CURRENT STEP, THE MEMORY ESTIMATE MIGHT BE SIGNIFICANTLY DIFFERENT THAN ACTUAL USAGE FOR 
+          PROBLEMS WITH SUBSTANTIAL CHANGES IN ACTIVE DEGREES OF FREEDOM BETWEEN STEPS (OR EVEN WITHIN
+          THE SAME STEP). EXAMPLES ARE: PROBLEMS WITH SIGNIFICANT CONTACT CHANGES, PROBLEMS WITH MODEL
+          CHANGE, PROBLEMS WITH BOTH STATIC STEP AND STEADY STATE DYNAMIC PROCEDURES WHERE ACOUSTIC 
+          ELEMENTS WILL ONLY BE ACTIVATED IN THE STEADY STATE DYNAMIC STEPS.
+      (4) FOR MULTI-PROCESS EXECUTION, THE ESTIMATED VALUE OF FLOATING POINT OPERATIONS FOR EACH PROCESS
+          IS BASED ON AN INITIAL SCHEDULING OF OPERATIONS AND MIGHT NOT REFLECT THE ACTUAL FLOATING 
+          POINT OPERATIONS COMPLETED ON EACH PROCESS. OPERATIONS ARE DYNAMICALY BALANCED DURING EXECUTION, 
+          SO THE ACTUAL BALANCE OF OPERATIONS BETWEEN PROCESSES IS EXPECTED TO BE BETTER THAN THE ESTIMATE
+          PRINTED HERE.
+      (5) THE UPPER LIMIT OF MEMORY THAT CAN BE ALLOCATED BY ABAQUS WILL IN GENERAL DEPEND ON THE VALUE OF
+          THE "MEMORY" PARAMETER AND THE AMOUNT OF PHYSICAL MEMORY AVAILABLE ON THE MACHINE. PLEASE SEE
+          THE "ABAQUS ANALYSIS USER'S MANUAL" FOR MORE DETAILS. THE ACTUAL USAGE OF MEMORY AND OF DISK
+          SPACE FOR SCRATCH DATA WILL DEPEND ON THIS UPPER LIMIT AS WELL AS THE MEMORY REQUIRED TO MINIMIZE
+          I/O. IF THE MEMORY UPPER LIMIT IS GREATER THAN THE MEMORY REQUIRED TO MINIMIZE I/O, THEN THE ACTUAL
+          MEMORY USAGE WILL BE CLOSE TO THE ESTIMATED "MEMORY TO MINIMIZE I/O" VALUE, AND THE SCRATCH DISK
+          USAGE WILL BE CLOSE-TO-ZERO; OTHERWISE, THE ACTUAL MEMORY USED WILL BE CLOSE TO THE PREVIOUSLY
+          MENTIONED MEMORY LIMIT, AND THE SCRATCH DISK USAGE WILL BE ROUGHLY PROPORTIONAL TO THE DIFFERENCE
+          BETWEEN THE ESTIMATED "MEMORY TO MINIMIZE I/O" AND THE MEMORY UPPER LIMIT. HOWEVER ACCURATE
+          ESTIMATE OF THE SCRATCH DISK SPACE IS NOT POSSIBLE.
+      (6) USING "*RESTART, WRITE" CAN GENERATE A LARGE AMOUNT OF DATA WRITTEN IN THE WORK DIRECTORY.
+
+
+                                INCREMENT     1 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  5.000E-02
+ STEP TIME COMPLETED       5.000E-02,  TOTAL TIME COMPLETED        5.000E-02
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         2.8831E+04
+           2   1         2.8831E+04
+           3   1         2.8831E+04
+
+ MAXIMUM                2.8831E+04                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                2.8831E+04                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         3.4614E-02
+           2   1         3.4614E-02
+           3   1         3.4614E-02
+
+ MAXIMUM                3.4614E-02                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                3.4614E-02                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      1.2327E-04   0.000     
+          3      2.4654E-04   0.000     
+          4      3.6981E-04   0.000     
+
+ MAXIMUM         3.6981E-04   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -1.393       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -1.393       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT     2 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.100    
+ STEP TIME COMPLETED       0.100    ,  TOTAL TIME COMPLETED        0.100    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         5.8717E+04
+           2   1         5.8717E+04
+           3   1         5.8717E+04
+
+ MAXIMUM                5.8717E+04                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                5.8717E+04                                                                                                
+ ELEMENT                     3                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         5.2740E-02
+           2   1         5.2740E-02
+           3   1         5.2740E-02
+
+ MAXIMUM                5.2740E-02                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                5.2740E-02                                                                                                
+ ELEMENT                     3                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      1.8954E-04   0.000     
+          3      3.7909E-04   0.000     
+          4      5.6863E-04   0.000     
+
+ MAXIMUM         5.6863E-04   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -2.785       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -2.785       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT     3 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.150    
+ STEP TIME COMPLETED       0.150    ,  TOTAL TIME COMPLETED        0.150    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         8.9170E+04
+           2   1         8.9170E+04
+           3   1         8.9170E+04
+
+ MAXIMUM                8.9170E+04                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                8.9170E+04                                                                                                
+ ELEMENT                     3                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         6.5025E-02
+           2   1         6.5025E-02
+           3   1         6.5025E-02
+
+ MAXIMUM                6.5025E-02                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                6.5025E-02                                                                                                
+ ELEMENT                     3                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      2.3515E-04   0.000     
+          3      4.7030E-04   0.000     
+          4      7.0545E-04   0.000     
+
+ MAXIMUM         7.0545E-04   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -4.178       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -4.178       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT     4 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.200    
+ STEP TIME COMPLETED       0.200    ,  TOTAL TIME COMPLETED        0.200    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         1.1999E+05
+           2   1         1.1999E+05
+           3   1         1.1999E+05
+
+ MAXIMUM                1.1999E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                1.1999E+05                                                                                                
+ ELEMENT                     3                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         7.4297E-02
+           2   1         7.4297E-02
+           3   1         7.4297E-02
+
+ MAXIMUM                7.4297E-02                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                7.4297E-02                                                                                                
+ ELEMENT                     3                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      2.6994E-04   0.000     
+          3      5.3989E-04   0.000     
+          4      8.0983E-04   0.000     
+
+ MAXIMUM         8.0983E-04   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -5.570       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -5.570       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT     5 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.250    
+ STEP TIME COMPLETED       0.250    ,  TOTAL TIME COMPLETED        0.250    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         1.5136E+05
+           2   1         1.5136E+05
+           3   1         1.5136E+05
+
+ MAXIMUM                1.5136E+05                                                                                                
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                1.5136E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         8.1789E-02
+           2   1         8.1789E-02
+           3   1         8.1789E-02
+
+ MAXIMUM                8.1789E-02                                                                                                
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                8.1789E-02                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      2.9829E-04   0.000     
+          3      5.9659E-04   0.000     
+          4      8.9488E-04   0.000     
+
+ MAXIMUM         8.9488E-04   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -6.973       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -6.973       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT     6 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.300    
+ STEP TIME COMPLETED       0.300    ,  TOTAL TIME COMPLETED        0.300    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         1.8262E+05
+           2   1         1.8262E+05
+           3   1         1.8262E+05
+
+ MAXIMUM                1.8262E+05                                                                                                
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                1.8262E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         8.7970E-02
+           2   1         8.7970E-02
+           3   1         8.7970E-02
+
+ MAXIMUM                8.7970E-02                                                                                                
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                8.7970E-02                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      3.2185E-04   0.000     
+          3      6.4369E-04   0.000     
+          4      9.6554E-04   0.000     
+
+ MAXIMUM         9.6554E-04   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -8.362       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -8.362       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT     7 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.350    
+ STEP TIME COMPLETED       0.350    ,  TOTAL TIME COMPLETED        0.350    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         2.1410E+05
+           2   1         2.1410E+05
+           3   1         2.1410E+05
+
+ MAXIMUM                2.1410E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                2.1410E+05                                                                                                
+ ELEMENT                     3                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         9.3272E-02
+           2   1         9.3272E-02
+           3   1         9.3272E-02
+
+ MAXIMUM                9.3272E-02                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                9.3272E-02                                                                                                
+ ELEMENT                     3                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      3.4216E-04   0.000     
+          3      6.8432E-04   0.000     
+          4      1.0265E-03   0.000     
+
+ MAXIMUM         1.0265E-03   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -9.752       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -9.752       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT     8 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.400    
+ STEP TIME COMPLETED       0.400    ,  TOTAL TIME COMPLETED        0.400    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         2.4578E+05
+           2   1         2.4578E+05
+           3   1         2.4578E+05
+
+ MAXIMUM                2.4578E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                2.4578E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         9.7915E-02
+           2   1         9.7915E-02
+           3   1         9.7915E-02
+
+ MAXIMUM                9.7915E-02                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                9.7915E-02                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      3.6004E-04   0.000     
+          3      7.2009E-04   0.000     
+          4      1.0801E-03   0.000     
+
+ MAXIMUM         1.0801E-03   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -11.14       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -11.14       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT     9 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.450    
+ STEP TIME COMPLETED       0.450    ,  TOTAL TIME COMPLETED        0.450    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         2.7762E+05
+           2   1         2.7762E+05
+           3   1         2.7762E+05
+
+ MAXIMUM                2.7762E+05                                                                                                
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                2.7762E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         0.1020
+           2   1         0.1020
+           3   1         0.1020
+
+ MAXIMUM                0.1020                                                                                                    
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                0.1020                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      3.7600E-04   0.000     
+          3      7.5200E-04   0.000     
+          4      1.1280E-03   0.000     
+
+ MAXIMUM         1.1280E-03   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -12.53       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -12.53       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT    10 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.500    
+ STEP TIME COMPLETED       0.500    ,  TOTAL TIME COMPLETED        0.500    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         3.0960E+05
+           2   1         3.0960E+05
+           3   1         3.0960E+05
+
+ MAXIMUM                3.0960E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                3.0960E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         0.1058
+           2   1         0.1058
+           3   1         0.1058
+
+ MAXIMUM                0.1058                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                0.1058                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      3.9040E-04   0.000     
+          3      7.8081E-04   0.000     
+          4      1.1712E-03   0.000     
+
+ MAXIMUM         1.1712E-03   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -13.93       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -13.93       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT    11 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.550    
+ STEP TIME COMPLETED       0.550    ,  TOTAL TIME COMPLETED        0.550    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         3.4170E+05
+           2   1         3.4170E+05
+           3   1         3.4170E+05
+
+ MAXIMUM                3.4170E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                3.4170E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         0.1091
+           2   1         0.1091
+           3   1         0.1091
+
+ MAXIMUM                0.1091                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                0.1091                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      4.0353E-04   0.000     
+          3      8.0706E-04   0.000     
+          4      1.2106E-03   0.000     
+
+ MAXIMUM         1.2106E-03   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -15.32       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -15.32       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT    12 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.600    
+ STEP TIME COMPLETED       0.600    ,  TOTAL TIME COMPLETED        0.600    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         3.7390E+05
+           2   1         3.7390E+05
+           3   1         3.7390E+05
+
+ MAXIMUM                3.7390E+05                                                                                                
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                3.7390E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         0.1122
+           2   1         0.1122
+           3   1         0.1122
+
+ MAXIMUM                0.1122                                                                                                    
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                0.1122                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      4.1559E-04   0.000     
+          3      8.3117E-04   0.000     
+          4      1.2468E-03   0.000     
+
+ MAXIMUM         1.2468E-03   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -16.71       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -16.71       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT    13 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.650    
+ STEP TIME COMPLETED       0.650    ,  TOTAL TIME COMPLETED        0.650    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         4.0621E+05
+           2   1         4.0621E+05
+           3   1         4.0621E+05
+
+ MAXIMUM                4.0621E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                4.0621E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         0.1150
+           2   1         0.1150
+           3   1         0.1150
+
+ MAXIMUM                0.1150                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                0.1150                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      4.2673E-04   0.000     
+          3      8.5346E-04   0.000     
+          4      1.2802E-03   0.000     
+
+ MAXIMUM         1.2802E-03   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -18.10       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -18.10       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT    14 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.700    
+ STEP TIME COMPLETED       0.700    ,  TOTAL TIME COMPLETED        0.700    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         4.3861E+05
+           2   1         4.3861E+05
+           3   1         4.3861E+05
+
+ MAXIMUM                4.3861E+05                                                                                                
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                4.3861E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         0.1177
+           2   1         0.1177
+           3   1         0.1177
+
+ MAXIMUM                0.1177                                                                                                    
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                0.1177                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      4.3710E-04   0.000     
+          3      8.7420E-04   0.000     
+          4      1.3113E-03   0.000     
+
+ MAXIMUM         1.3113E-03   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -19.50       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -19.50       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT    15 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.750    
+ STEP TIME COMPLETED       0.750    ,  TOTAL TIME COMPLETED        0.750    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         4.7109E+05
+           2   1         4.7109E+05
+           3   1         4.7109E+05
+
+ MAXIMUM                4.7109E+05                                                                                                
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                4.7109E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         0.1201
+           2   1         0.1201
+           3   1         0.1201
+
+ MAXIMUM                0.1201                                                                                                    
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                0.1201                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      4.4678E-04   0.000     
+          3      8.9357E-04   0.000     
+          4      1.3404E-03   0.000     
+
+ MAXIMUM         1.3404E-03   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -20.89       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -20.89       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT    16 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.800    
+ STEP TIME COMPLETED       0.800    ,  TOTAL TIME COMPLETED        0.800    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         5.0365E+05
+           2   1         5.0365E+05
+           3   1         5.0365E+05
+
+ MAXIMUM                5.0365E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                5.0365E+05                                                                                                
+ ELEMENT                     3                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         0.1224
+           2   1         0.1224
+           3   1         0.1224
+
+ MAXIMUM                0.1224                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                0.1224                                                                                                    
+ ELEMENT                     3                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      4.5588E-04   0.000     
+          3      9.1175E-04   0.000     
+          4      1.3676E-03   0.000     
+
+ MAXIMUM         1.3676E-03   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -22.28       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -22.28       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT    17 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.850    
+ STEP TIME COMPLETED       0.850    ,  TOTAL TIME COMPLETED        0.850    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         5.3628E+05
+           2   1         5.3628E+05
+           3   1         5.3628E+05
+
+ MAXIMUM                5.3628E+05                                                                                                
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                5.3628E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         0.1246
+           2   1         0.1246
+           3   1         0.1246
+
+ MAXIMUM                0.1246                                                                                                    
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                0.1246                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      4.6444E-04   0.000     
+          3      9.2888E-04   0.000     
+          4      1.3933E-03   0.000     
+
+ MAXIMUM         1.3933E-03   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -23.67       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -23.67       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT    18 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.900    
+ STEP TIME COMPLETED       0.900    ,  TOTAL TIME COMPLETED        0.900    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         5.6899E+05
+           2   1         5.6899E+05
+           3   1         5.6899E+05
+
+ MAXIMUM                5.6899E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                5.6899E+05                                                                                                
+ ELEMENT                     3                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         0.1266
+           2   1         0.1266
+           3   1         0.1266
+
+ MAXIMUM                0.1266                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                0.1266                                                                                                    
+ ELEMENT                     3                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      4.7253E-04   0.000     
+          3      9.4507E-04   0.000     
+          4      1.4176E-03   0.000     
+
+ MAXIMUM         1.4176E-03   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -25.07       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -25.07       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT    19 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED  0.950    
+ STEP TIME COMPLETED       0.950    ,  TOTAL TIME COMPLETED        0.950    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         6.0176E+05
+           2   1         6.0176E+05
+           3   1         6.0176E+05
+
+ MAXIMUM                6.0176E+05                                                                                                
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                6.0176E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         0.1286
+           2   1         0.1286
+           3   1         0.1286
+
+ MAXIMUM                0.1286                                                                                                    
+ ELEMENT                     3                                                                                                 
+
+ MINIMUM                0.1286                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      4.8021E-04   0.000     
+          3      9.6042E-04   0.000     
+          4      1.4406E-03   0.000     
+
+ MAXIMUM         1.4406E-03   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -26.46       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -26.46       0.000    
+ AT NODE                 1           1
+
+
+                                INCREMENT    20 SUMMARY
+
+
+ TIME INCREMENT COMPLETED  5.000E-02,  FRACTION OF STEP COMPLETED   1.00    
+ STEP TIME COMPLETED        1.00    ,  TOTAL TIME COMPLETED         1.00    
+
+
+
+                                                  E L E M E N T   O U T P U T
+
+
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       S11     
+                NOTE 
+
+           1   1         6.3459E+05
+           2   1         6.3459E+05
+           3   1         6.3459E+05
+
+ MAXIMUM                6.3459E+05                                                                                                
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                6.3459E+05                                                                                                
+ ELEMENT                     3                                                                                                 
+
+
+
+   THE FOLLOWING TABLE IS PRINTED FOR ALL ELEMENTS WITH TYPE T2D2 AT THE INTEGRATION POINTS
+
+    ELEMENT  PT FOOT-       E11     
+                NOTE 
+
+           1   1         0.1304
+           2   1         0.1304
+           3   1         0.1304
+
+ MAXIMUM                0.1304                                                                                                    
+ ELEMENT                     1                                                                                                 
+
+ MINIMUM                0.1304                                                                                                    
+ ELEMENT                     3                                                                                                 
+
+
+
+
+                                       N O D E   O U T P U T
+
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   U1          U2       
+            NOTE
+  
+          2      4.8751E-04   0.000     
+          3      9.7501E-04   0.000     
+          4      1.4625E-03   0.000     
+
+ MAXIMUM         1.4625E-03   0.000    
+ AT NODE                 4           1
+
+ MINIMUM          0.000       0.000    
+ AT NODE                 1           1
+  
+  
+  
+   THE FOLLOWING TABLE IS PRINTED FOR ALL NODES
+  
+       NODE FOOT-   RF1         RF2      
+            NOTE
+  
+          1      -27.85       0.000     
+
+ MAXIMUM          0.000       0.000    
+ AT NODE                 2           1
+
+ MINIMUM         -27.85       0.000    
+ AT NODE                 1           1
+
+
+          THE ANALYSIS HAS BEEN COMPLETED
+
+
+
+                              ANALYSIS COMPLETE
+                              WITH     1 WARNING MESSAGES ON THE DAT FILE
+
+
+
+     JOB TIME SUMMARY
+       USER TIME (SEC)      =  0.39000    
+       SYSTEM TIME (SEC)    =  4.00000E-02
+       TOTAL CPU TIME (SEC) =  0.43000    
+       WALLCLOCK TIME (SEC) =          3
